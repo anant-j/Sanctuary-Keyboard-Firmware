@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Config Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+    .grid input {
+      width: 60px;
+      text-align: center;
+    }
+    .controls {
+      margin-bottom: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Keyboard Config Editor</h1>
+
+  <div class="controls">
+    <label for="layerSelect">Select Layer:</label>
+    <select id="layerSelect"></select>
+
+    <button id="addLayer">Add Layer</button>
+    <button id="removeLayer">Remove Selected Layer</button>
+  </div>
+
+  <div id="layerContainer"></div>
+
+  <textarea id="configOutput" readonly></textarea>
+  <br>
+  <button id="generateConfig">Generate Config</button>
+
+  <script>
+    // Initial Config Data
+    let config = [
+      [ // Layer 1
+        ["KEY_ESC", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4", "KEY_F5", "KEY_F6", " ", "3"],
+        ["`", "1", "2", "3", "4", "5", "6", "7", "8"],
+        ["KEY_TAB", "q", "w", "e", "r", "t", "y", "u", "i"],
+        ["KEY_CAPS_LOCK", "a", "s", "d", "f", "g", "h", "j", "k"],
+        ["KEY_LEFT_SHIFT", "z", "x", "c", "v", "b", "n", "m", ","],
+        ["KEY_LEFT_CTRL", " ", "KEY_LEFT_GUI", "KEY_LEFT_ALT", " ", " ", " ", " ", "KEY_RIGHT_ALT"]
+      ],
+      [ // Layer 2
+        ["KEY_ESC", "KEY_F7", "KEY_F8", "KEY_F9", "KEY_F10", "KEY_F11", "KEY_F12", " ", "3"],
+        ["`", "1", "2", "3", "4", "5", "6", "7", "8"],
+        ["KEY_TAB", "q", "w", "e", "r", "t", "y", "u", "i"],
+        ["KEY_CAPS_LOCK", "a", "s", "d", "f", "g", "h", "j", "k"],
+        ["KEY_LEFT_SHIFT", "z", "x", "c", "v", "b", "n", "m", ","],
+        ["KEY_LEFT_CTRL", " ", "KEY_LEFT_GUI", "KEY_LEFT_ALT", " ", " ", " ", " ", " "]
+      ]
+    ];
+
+    const layerSelect = document.getElementById("layerSelect");
+    const layerContainer = document.getElementById("layerContainer");
+    const configOutput = document.getElementById("configOutput");
+
+    // Render Layers
+    function renderLayers() {
+      layerSelect.innerHTML = "";
+      layerContainer.innerHTML = "";
+      config.forEach((layer, layerIndex) => {
+        const option = document.createElement("option");
+        option.value = layerIndex;
+        option.textContent = `Layer ${layerIndex + 1}`;
+        layerSelect.appendChild(option);
+
+        if (layerIndex === parseInt(layerSelect.value)) {
+          renderLayer(layer, layerIndex);
+        }
+      });
+    }
+
+    function renderLayer(layer, layerIndex) {
+      const grid = document.createElement("div");
+      grid.className = "grid";
+      grid.style.gridTemplateColumns = `repeat(${layer[0].length}, auto)`;
+      layer.forEach((row, rowIndex) => {
+        row.forEach((key, colIndex) => {
+          const input = document.createElement("input");
+          input.value = key;
+          input.dataset.layer = layerIndex;
+          input.dataset.row = rowIndex;
+          input.dataset.col = colIndex;
+          input.addEventListener("change", handleInputChange);
+          grid.appendChild(input);
+        });
+      });
+      layerContainer.appendChild(grid);
+    }
+
+    function handleInputChange(e) {
+      const layer = e.target.dataset.layer;
+      const row = e.target.dataset.row;
+      const col = e.target.dataset.col;
+      config[layer][row][col] = e.target.value;
+    }
+
+    // Add Layer
+    document.getElementById("addLayer").addEventListener("click", () => {
+      const numRows = config[0].length;
+      const numCols = config[0][0].length;
+      const newLayer = Array.from({ length: numRows }, () => Array(numCols).fill(" "));
+      config.push(newLayer);
+      renderLayers();
+    });
+
+    // Remove Layer
+    document.getElementById("removeLayer").addEventListener("click", () => {
+      const selectedLayer = parseInt(layerSelect.value);
+      if (config.length > 1) {
+        config.splice(selectedLayer, 1);
+        renderLayers();
+      } else {
+        alert("Cannot remove the last layer.");
+      }
+    });
+
+    // Generate Config
+    document.getElementById("generateConfig").addEventListener("click", () => {
+      let output = "int Layer1[NumLayers][NumRows][NumCols] = {\n";
+      config.forEach((layer, layerIndex) => {
+        output += `  // Layer ${layerIndex + 1}\n  {\n`;
+        layer.forEach((row) => {
+          output += `    {${row.map((key) => (isNaN(key) ? `\"${key}\"` : key)).join(", ")}},\n`;
+        });
+        output += "  },\n";
+      });
+      output += "};";
+      configOutput.value = output;
+    });
+
+    // Initial Render
+    layerSelect.addEventListener("change", renderLayers);
+    renderLayers();
+  </script>
+</body>
+</html>
