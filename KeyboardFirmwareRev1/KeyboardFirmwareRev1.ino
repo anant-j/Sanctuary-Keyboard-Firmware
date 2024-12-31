@@ -2,7 +2,7 @@
 #include <Adafruit_NeoPixel.h>
 #include "SanctuaryHardware.h"  //Definitions file, for all the hardware - removes and simplifies from this file
 
-BleKeyboard Kbd("Sanctuary", "LegoRocket");
+BleKeyboard Kbd("Sanctuary", "WirelessSplit60");
 Adafruit_NeoPixel pixels(NUM_PIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 
 // Function to set NeoPixel color
