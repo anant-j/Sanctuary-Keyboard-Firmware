@@ -6,24 +6,30 @@
 #define ON 1
 
 //Pin Definitions
-#define Row1 26
-#define Row2 25
-#define Row3 34
-#define Row4 39
-#define Row5 36
+#define Row1 12
+#define Row2 27
+#define Row3 33
+#define Row4 15
+#define Row5 32
 
-#define Col1 4
-#define Col2 5
-#define Col3 19
-#define Col4 21
-#define Col5 7
-#define Col6 8
-#define Col7 34
-#define Col8 27
-#define Col9 33
-#define Col10 15
-#define Col11 32
-#define Col12 14
+#define Col1 14
+#define Col2 20
+#define Col3 22
+#define Col4 26
+#define Col5 25
+#define Col6 4
+#define Col7 5
+#define Col8 19
+#define Col9 21
+#define Col10 34
+#define Col11 39
+#define Col12 36
+
+/*  https://learn.adafruit.com/adafruit-esp32-feather-v2/pinouts
+Can use for both: 26, 25, 4, 5, 19, 21, 7, 8, 12, 27, 33, 15, 32, 14, 20, 22
+Can use for Col only: 34, 39, 36, D37
+Cannot use: 13 (LED)
+*/
 
 //Matrix setup
 #define NumRows 5

@@ -66,8 +66,6 @@ int RowCnt = 0;
 int LayerCnt = 0;
 // Method to handle the loop functionality
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH); 
-
   if(Kbd.isConnected()) {
     // Set NeoPixel to blue (connected)
     setNeoPixelColor(0, 0, 255);

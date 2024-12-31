@@ -14,7 +14,6 @@ void setNeoPixelColor(int red, int green, int blue) {
 // Method to enable NeoPixel power
 void enableNeoPixelPower() {
   pinMode(NEOPIXEL_I2C_POWER, OUTPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(NEOPIXEL_I2C_POWER, HIGH); // Pull power pin high to enable NeoPixel
 }
 
