@@ -51,9 +51,9 @@
 
   <div class="config-controls">
     <label for="rowsInput">Rows:</label>
-    <input type="number" id="rowsInput" min="1" value="6">
+    <input type="number" id="rowsInput" min="1" value="5">
     <label for="colsInput">Columns:</label>
-    <input type="number" id="colsInput" min="1" value="8">
+    <input type="number" id="colsInput" min="1" value="12">
     <button id="updateLayout">Update Layout</button>
   </div>
 
@@ -70,16 +70,7 @@
     ];
 
     // Initial Config Data
-    let config = [
-      [ // Layer 1
-        ["KEY_ESC", "KEY_F1", "KEY_F2", "KEY_F3", "KEY_F4", "KEY_F5", "KEY_F6", " ", "3"],
-        ["`", "1", "2", "3", "4", "5", "6", "7", "8"],
-        ["KEY_TAB", "q", "w", "e", "r", "t", "y", "u", "i"],
-        ["KEY_CAPS_LOCK", "a", "s", "d", "f", "g", "h", "j", "k"],
-        ["KEY_LEFT_SHIFT", "z", "x", "c", "v", "b", "n", "m", ","],
-        ["KEY_LEFT_CTRL", " ", "KEY_LEFT_GUI", "KEY_LEFT_ALT", " ", " ", " ", " ", "KEY_RIGHT_ALT"]
-      ]
-    ];
+    let config = [[["KEY_ESC","KEY_F1","KEY_F2","KEY_F3","KEY_F4","KEY_F5","KEY_F6"," ","3"," "," "," "],["`","1","2","3","4","5","6","7","8"," "," "," "],["KEY_TAB","q","w","e","r","t","y","u","i"," "," "," "],["KEY_CAPS_LOCK","a","s","d","f","g","h","j","k"," "," "," "],["KEY_LEFT_SHIFT","z","x","c","v","b","n","m",","," "," "," "]]];
 
     const layerSelect = document.getElementById("layerSelect");
     const layerContainer = document.getElementById("layerContainer");
@@ -90,43 +81,48 @@
 
     // Render Layers
     function renderLayers() {
-      layerSelect.innerHTML = "";
-      layerContainer.innerHTML = "";
-      config.forEach((layer, layerIndex) => {
-        const option = document.createElement("option");
-        option.value = layerIndex;
-        option.textContent = `Layer ${layerIndex + 1}`;
-        layerSelect.appendChild(option);
+        layerSelect.innerHTML = "";
+        layerContainer.innerHTML = "";
+        config.forEach((layer, layerIndex) => {
+            const option = document.createElement("option");
+            option.value = layerIndex;
+            option.textContent = `Layer ${layerIndex + 1}`;
+            layerSelect.appendChild(option);
 
-        if (layerIndex === parseInt(layerSelect.value)) {
-          renderLayer(layer, layerIndex);
-        }
-      });
-    }
-
-    function renderLayer(layer, layerIndex) {
-      const grid = document.createElement("div");
-      grid.className = "grid";
-      grid.style.gridTemplateColumns = `repeat(${layer[0].length}, auto)`;
-      layer.forEach((row, rowIndex) => {
-        row.forEach((key, colIndex) => {
-          const select = document.createElement("select");
-          keyOptions.forEach((option) => {
-            const opt = document.createElement("option");
-            opt.value = option;
-            opt.textContent = option;
-            if (option === key) opt.selected = true;
-            select.appendChild(opt);
-          });
-          select.dataset.layer = layerIndex;
-          select.dataset.row = rowIndex;
-          select.dataset.col = colIndex;
-          select.addEventListener("change", handleInputChange);
-          grid.appendChild(select);
+            // Always render all layers, but only show the selected layer content
+            const layerDiv = document.createElement("div");
+            layerDiv.style.display = layerIndex === parseInt(layerSelect.value) ? 'block' : 'none';
+            renderLayer(layerDiv, layer, layerIndex);
+            layerContainer.appendChild(layerDiv);
         });
-      });
-      layerContainer.appendChild(grid);
     }
+
+    function renderLayer(layerDiv, layer, layerIndex) {
+        const grid = document.createElement("div");
+        grid.className = "grid";
+        grid.style.gridTemplateColumns = `repeat(${layer[0].length}, auto)`;
+
+        layer.forEach((row, rowIndex) => {
+            row.forEach((key, colIndex) => {
+            const select = document.createElement("select");
+            keyOptions.forEach((option) => {
+                const opt = document.createElement("option");
+                opt.value = option;
+                opt.textContent = option;
+                if (option === key) opt.selected = true;
+                select.appendChild(opt);
+            });
+            select.dataset.layer = layerIndex;
+            select.dataset.row = rowIndex;
+            select.dataset.col = colIndex;
+            select.addEventListener("change", handleInputChange);
+            grid.appendChild(select);
+            });
+        });
+
+        layerDiv.appendChild(grid);
+    }
+
 
     function handleInputChange(e) {
       const layer = e.target.dataset.layer;
@@ -173,17 +169,26 @@
     });
 
     // Generate Config
-    document.getElementById("generateConfig").addEventListener("click", () => {
-      let output = "int Layer1[NumLayers][NumRows][NumCols] = {\n";
-      config.forEach((layer, layerIndex) => {
+    document.getElementById('generateConfig').addEventListener('click', () => {
+    let output = 'int AllLayers[NumLayers][NumRows][NumCols] = {\n';
+    config.forEach((layer, layerIndex) => {
         output += `  // Layer ${layerIndex + 1}\n  {\n`;
         layer.forEach((row) => {
-          output += `    {${row.map((key) => (isNaN(key) ? `\"${key}\"` : key)).join(", ")}},\n`;
+        output += `    {${row
+            .map((key) => {
+            // Reserved keys (uppercase, underscores, and numbers) stay unquoted
+            if (key.startsWith('KEY_')) {
+                return key;
+            }
+            // Non-reserved keys are wrapped in single quotes
+            return `'${key}'`;
+            })
+            .join(', ')}},\n`;
         });
-        output += "  },\n";
-      });
-      output += "};";
-      configOutput.value = output;
+        output += '  },\n';
+    });
+    output += '};';
+    configOutput.value = output;
     });
 
     // Save Config
