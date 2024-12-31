@@ -1,16 +1,3 @@
-#include <Adafruit_NeoPixel.h>
-#include "esp_mac.h"
-
-// DEBUG boolean
-#define DEBUG 1
-
-// NeoPixel settings
-#define PIN_NEOPIXEL 0            // NeoPixel data pin
-#define NEOPIXEL_I2C_POWER 2      // NeoPixel power pin
-#define NUM_PIXELS 1              // Number of NeoPixels
-
-Adafruit_NeoPixel pixels(NUM_PIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
-
 // Setup, runs once on boot
 void setup() {  
   Serial.begin(115200);

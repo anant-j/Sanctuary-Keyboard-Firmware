@@ -1,3 +1,6 @@
+// DEBUG Settings
+#define DEBUG 1
+
 //Define on and off values
 #define OFF 0
 #define ON 1
@@ -22,25 +25,18 @@
 #define Col11 32
 #define Col12 14
 
-
-//Rotary Pin Definitions
-// #define Rotary1 15
-// #define Rotary2 22
-
 //Matrix setup
 #define NumRows 5
 #define NumCols 12
 #define NumLayers 1
 
-//TODO auto adjust based on model (i.e less LEDs)
-//LED definitions
-// #define DataPin 21
-// #define LedType WS2812
-// #define ColorOrder GRB
-// #define NumLeds 93
-
-
 #define FUNCTION_SW   256
 #define NULL_CON      257
 #define NEXT          258
 #define PREV          259
+
+// NeoPixel settings
+#define PIN_NEOPIXEL 0            // NeoPixel data pin
+#define NEOPIXEL_I2C_POWER 2      // NeoPixel power pin
+#define NUM_PIXELS 1              // Number of NeoPixels
+
