@@ -5,6 +5,7 @@
 BleKeyboard Kbd("Sanctuary", "WirelessSplit60");
 Adafruit_NeoPixel pixels(NUM_PIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 
+// ------------------------NEOPIXEL SETUP--------------------------------
 // Function to set NeoPixel color
 void setNeoPixelColor(int red, int green, int blue) {
   pixels.setPixelColor(0, pixels.Color(red, green, blue));
@@ -23,4 +24,18 @@ void initializeNeoPixel() {
   pixels.clear();
   pixels.setBrightness(NEOPIXEL_BRIGHTNESS); // Adjust brightness (0-255)
   pixels.show();
+}
+
+// ------------------------BT SETUP--------------------------------
+// Method to start Bluetooth keyboard
+void startBluetoothKeyboard() {
+  if(DEBUG) {
+    Serial.println("kbd begin...");
+  }
+  Kbd.releaseAll();
+  Kbd.end();
+  Kbd.begin();
+  if(DEBUG) {
+    Serial.println("kbd setup complete...");
+  }
 }

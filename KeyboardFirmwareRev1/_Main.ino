@@ -22,48 +22,6 @@ void setup() {
   setNeoPixelColor(255, 0, 0);
 }
 
-// Method to initialize row output pins
-void initializeRowPins() {
-  for(int i = 0; i < NumRows; i++) {
-    pinMode(Rows[i], OUTPUT);  
-    digitalWrite(Rows[i], LOW);
-    if(DEBUG) {
-      Serial.print("row output pin: ");
-      Serial.println(Rows[i]);
-    }
-  }
-  if(DEBUG) {
-    Serial.println("row output pin complete...");
-  }
-}
-
-// Method to initialize column input pins
-void initializeColPins() {
-  for(int i = 0; i < NumCols; i++) {
-    pinMode(Cols[i], INPUT_PULLDOWN);
-    if(DEBUG) {
-      Serial.print("column output pin: ");
-      Serial.println(Cols[i]);
-    }
-  }
-  if(DEBUG) {
-    Serial.println("Col output pin complete...");
-  }
-}
-
-// Method to start Bluetooth keyboard
-void startBluetoothKeyboard() {
-  if(DEBUG) {
-    Serial.println("kbd begin...");
-  }
-  Kbd.releaseAll();
-  Kbd.end();
-  Kbd.begin();
-  if(DEBUG) {
-    Serial.println("kbd setup complete...");
-  }
-}
-
 int RowCnt = 0; 
 int LayerCnt = 0;
 // Method to handle the loop functionality
@@ -206,4 +164,34 @@ void loop() {
 
   //Delay so it's not too fast
   delay(1);
+}
+
+
+// Method to initialize row output pins
+void initializeRowPins() {
+  for(int i = 0; i < NumRows; i++) {
+    pinMode(Rows[i], OUTPUT);  
+    digitalWrite(Rows[i], LOW);
+    if(DEBUG) {
+      Serial.print("row output pin: ");
+      Serial.println(Rows[i]);
+    }
+  }
+  if(DEBUG) {
+    Serial.println("row output pin complete...");
+  }
+}
+
+// Method to initialize column input pins
+void initializeColPins() {
+  for(int i = 0; i < NumCols; i++) {
+    pinMode(Cols[i], INPUT_PULLDOWN);
+    if(DEBUG) {
+      Serial.print("column output pin: ");
+      Serial.println(Cols[i]);
+    }
+  }
+  if(DEBUG) {
+    Serial.println("Col output pin complete...");
+  }
 }
