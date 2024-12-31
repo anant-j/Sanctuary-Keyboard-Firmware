@@ -95,13 +95,13 @@ void loop() {
       if(digitalRead( Cols[ColCnt] ) == HIGH && PressedCheck[LayerCnt][RowCnt][ColCnt] == OFF)
       {
         //Switch based on the key pressed, allows for unique functions other than alphanumerics
-        switch(Layer1[LayerCnt][RowCnt][ColCnt])
+        switch(AllLayers[LayerCnt][RowCnt][ColCnt])
         {
           //Change the ID of the bluetooth, so you can connect to another device
           case 0:
           case 1:
           case 2:
-            // changeID(Layer1[LayerCnt][RowCnt][ColCnt]);
+            // changeID(AllLayers[LayerCnt][RowCnt][ColCnt]);
             break;
           //Rotary encoder button, play pause not an int
           case 3:
@@ -114,7 +114,12 @@ void loop() {
           case FUNCTION_SW:
             //PressedCheck.fill(OFF);
             Kbd.releaseAll();
+            if (LayerCnt < NumLayers - 1){
             LayerCnt++;
+            }
+            else {
+              LayerCnt = 0;
+            }
             break;
           case NULL_CON:
             break;
@@ -126,18 +131,18 @@ void loop() {
             Kbd.press(KEY_MEDIA_PREVIOUS_TRACK);
             break;
           default:
-            Kbd.press( Layer1[LayerCnt][RowCnt][ColCnt] );
+            Kbd.press( AllLayers[LayerCnt][RowCnt][ColCnt] );
         }
         //Assign the current key as ON, so it doesn't constantly press the button
         PressedCheck[LayerCnt][RowCnt][ColCnt] = ON;   
-        //Serial.print( Layer1[a][ColCnt] );
+        //Serial.print( AllLayers[a][ColCnt] );
       }
 
       //Otherwise, check if the switch was released
       else if(digitalRead( Cols[ColCnt] ) == LOW && PressedCheck[LayerCnt][RowCnt][ColCnt] == ON)
       {
         //Switch based on the switch released
-        switch(Layer1[LayerCnt][RowCnt][ColCnt])
+        switch(AllLayers[LayerCnt][RowCnt][ColCnt])
         {
           //Nothing for the tactile switch
           case 1:
@@ -150,10 +155,10 @@ void loop() {
             break;
           case FUNCTION_SW:
             PressedCheck[LayerCnt][RowCnt][ColCnt] = OFF;
-            if(LayerCnt > 0)
-            {
-              LayerCnt--;
-            }
+            // if(LayerCnt > 0)
+            // {
+            //   LayerCnt--;
+            // }
             Kbd.release(KEY_MEDIA_PLAY_PAUSE);            
             Kbd.release(KEY_MEDIA_PREVIOUS_TRACK);
             Kbd.release(KEY_MEDIA_NEXT_TRACK);
@@ -161,10 +166,10 @@ void loop() {
             break;
           case NULL_CON:
             PressedCheck[LayerCnt][RowCnt][ColCnt] = OFF;
-            if(LayerCnt > 0)
-            {
-              LayerCnt--;
-            }
+            // if(LayerCnt > 0)
+            // {
+            //   LayerCnt--;
+            // }
             Kbd.release(KEY_MEDIA_PLAY_PAUSE);            
             Kbd.release(KEY_MEDIA_PREVIOUS_TRACK);
             Kbd.release(KEY_MEDIA_NEXT_TRACK);
@@ -178,7 +183,7 @@ void loop() {
             break;
           //Release all other keys on the keyboard
           default:
-            Kbd.release( Layer1[LayerCnt][RowCnt][ColCnt] );
+            Kbd.release( AllLayers[LayerCnt][RowCnt][ColCnt] );
         }
         //Let the keyboard know it's off, and to not constantly release keys that aren't released
         PressedCheck[LayerCnt][RowCnt][ColCnt] = OFF;
