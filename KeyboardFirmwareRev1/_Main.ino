@@ -56,9 +56,11 @@ void startBluetoothKeyboard() {
   if(DEBUG) {
     Serial.println("kbd begin...");
   }
+  Kbd.releaseAll();
+  Kbd.end();
   Kbd.begin();
   if(DEBUG) {
-    Serial.println("kbd begin complete...");
+    Serial.println("kbd setup complete...");
   }
 }
 
