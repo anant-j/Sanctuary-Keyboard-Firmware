@@ -34,7 +34,7 @@ Cannot use: 13 (LED)
 //Matrix setup
 #define NumRows 5
 #define NumCols 12
-#define NumLayers 1
+#define NumLayers 2
 
 #define FUNCTION_SW   256
 #define NULL_CON      257

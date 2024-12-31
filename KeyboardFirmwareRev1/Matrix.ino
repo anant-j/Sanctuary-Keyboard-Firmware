@@ -6,11 +6,30 @@ short Cols[NumCols] = {Col1, Col2, Col3, Col4, Col5, Col6, Col7, Col8, Col9, Col
 int Layer1[NumLayers][NumRows][NumCols] = 
 {
   {
-    {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
-    {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
-    {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
-    {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
-    {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    // {KEY_ESC,       KEY_F1,       KEY_F2,       KEY_F3,       KEY_F4,       KEY_F5,       KEY_F6,      '7',      '8' },
+    // {'`'    ,       '1'   ,       '2'   ,       '3'   ,       '4'   ,       '5'   ,       '6'   ,       '7',      '8' },
+    // {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    // {KEY_CAPS_LOCK, 'a'   ,       's'   ,       'd'   ,       'f'   ,       'g'   ,       'h'   ,       'j',      '8' }, //,       'k', '6'   ,       '7'   ,       '8' },
+    // {KEY_LEFT_SHIFT,'z'   ,       'x'   ,       'c'   ,       'v'   ,       'b'   ,       'n'   ,       'm',      '8' }, //,       ',', '6'   ,       '7'   ,       '8' },
+    // {KEY_LEFT_CTRL, ' '   , KEY_LEFT_GUI, KEY_LEFT_ALT,       ' '   ,       ' '   ,       ' '   ,       ' '   ,       KEY_RIGHT_ALT },
+  
+    // {' '    ,        '9'   , KEY_HOME    ,     KEY_INSERT,   KEY_BACKSPACE,    '=' ,       '-'   ,       '0'   ,       '9' },
+    // {' '    ,       '6'   , KEY_END     , KEY_DELETE  ,       '\\'  ,       ']'   ,       '['   ,       'p'   ,       'o' },
+    // {' '    ,       2   ,       1   ,       0   ,       KEY_RETURN   , KEY_RETURN  ,       '\''  ,       ';'   ,       'l' },
+    // {' '    , KEY_RETURN , KEY_UP_ARROW,   5   , KEY_RIGHT_SHIFT ,   ' '   ,       ' '   ,       '/'   ,       '.'   },
+    // {' '    , KEY_RIGHT_ARROW  , KEY_DOWN_ARROW  , KEY_LEFT_ARROW  , KEY_RIGHT_CTRL  ,  KEY_RIGHT_GUI  , ' '  , FUNCTION_SW}
+  },
+  {
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
+    {FUNCTION_SW,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
     // {KEY_ESC,       KEY_F1,       KEY_F2,       KEY_F3,       KEY_F4,       KEY_F5,       KEY_F6,      '7',      '8' },
     // {'`'    ,       '1'   ,       '2'   ,       '3'   ,       '4'   ,       '5'   ,       '6'   ,       '7',      '8' },
     // {KEY_TAB,       'q'   ,       'w'   ,       'e'   ,       'r'   ,       't'   ,       'y'   ,       'u',      'i', '6'   ,       '7'   ,       '8' },
