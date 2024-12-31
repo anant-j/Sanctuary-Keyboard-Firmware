@@ -69,9 +69,21 @@ void loop() {
   //Check if the keyboard is connected, if so, scan the matrix
   if(Kbd.isConnected())
   {
+    if (LayerCnt == 0){
+      // Set NeoPixel to green (connected layer 1)
+      setNeoPixelColor(0, 255, 0);
+    }
+    else if (LayerCnt == 1){
+      // Set NeoPixel to blue (connected layer 2)
+      setNeoPixelColor(0, 0, 255);
+    }
+    else {
+      // Set NeoPixel to white (connected layer) 
+      setNeoPixelColor(255, 255, 255);
+    }
+
     //Initialize new Row to scan
     digitalWrite(Rows[RowCnt],HIGH);
-
     
     //Check columns
     int ColCnt = 0;
@@ -89,7 +101,7 @@ void loop() {
           case 0:
           case 1:
           case 2:
-            changeID(Layer1[LayerCnt][RowCnt][ColCnt]);
+            // changeID(Layer1[LayerCnt][RowCnt][ColCnt]);
             break;
           //Rotary encoder button, play pause not an int
           case 3:
