@@ -21,6 +21,6 @@ void enableNeoPixelPower() {
 void initializeNeoPixel() {
   pixels.begin();
   pixels.clear();
-  pixels.setBrightness(10); // Adjust brightness (0-255)
+  pixels.setBrightness(NEOPIXEL_BRIGHTNESS); // Adjust brightness (0-255)
   pixels.show();
 }
