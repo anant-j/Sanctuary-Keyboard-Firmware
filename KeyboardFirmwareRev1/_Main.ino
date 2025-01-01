@@ -1,7 +1,7 @@
 // Setup, runs once on boot
 void setup() {  
   Serial.begin(115200);
-  if(DEBUG) {
+  if(DEBUGMODE) {
       Serial.println("Start Initializing...");
   }
 
@@ -54,6 +54,9 @@ void loop() {
       //Check state of current position, and make sure it was previously off
       if(digitalRead( Cols[ColCnt] ) == HIGH && PressedCheck[LayerCnt][RowCnt][ColCnt] == OFF)
       {
+        if(DEBUGMODE) {
+            Serial.printf("Layer: %d, Row: %d, Col: %d, GPIO PINS: [%d,%d], KEY Pressed: %d\n", LayerCnt, RowCnt, ColCnt, Rows[RowCnt], Cols[ColCnt], AllLayers[LayerCnt][RowCnt][ColCnt]);
+        }
         //Switch based on the key pressed, allows for unique functions other than alphanumerics
         switch(AllLayers[LayerCnt][RowCnt][ColCnt])
         {
@@ -116,14 +119,14 @@ void loop() {
 // Method to initialize row output pins
 void initializeRowPins() {
   for(int i = 0; i < NumRows; i++) {
-    if(DEBUG) {
+    if(DEBUGMODE) {
       Serial.print("setup row output pin: ");
       Serial.println(Rows[i]);
     }
     pinMode(Rows[i], OUTPUT);  
     digitalWrite(Rows[i], LOW);    
   }
-  if(DEBUG) {
+  if(DEBUGMODE) {
     Serial.println("setup row output pin complete...");
   }
 }
@@ -131,13 +134,13 @@ void initializeRowPins() {
 // Method to initialize column input pins
 void initializeColPins() {
   for(int i = 0; i < NumCols; i++) {
-    if(DEBUG) {
+    if(DEBUGMODE) {
       Serial.print("column output pin: ");
       Serial.println(Cols[i]);
     }
     pinMode(Cols[i], INPUT_PULLDOWN);
   }
-  if(DEBUG) {
+  if(DEBUGMODE) {
     Serial.println("Col output pin complete...");
   }
 }

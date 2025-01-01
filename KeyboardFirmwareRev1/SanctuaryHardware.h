@@ -1,5 +1,5 @@
-// DEBUG Settings
-#define DEBUG 1
+// DEBUGMODE Settings
+#define DEBUGMODE 1
 
 //Define on and off values
 #define OFF 0

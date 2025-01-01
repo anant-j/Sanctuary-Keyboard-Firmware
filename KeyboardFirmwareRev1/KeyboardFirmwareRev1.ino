@@ -29,13 +29,13 @@ void initializeNeoPixel() {
 // ------------------------BT SETUP--------------------------------
 // Method to start Bluetooth keyboard
 void startBluetoothKeyboard() {
-  if(DEBUG) {
+  if(DEBUGMODE) {
     Serial.println("BLE KBD setup begin...");
   }
   Kbd.releaseAll();
   Kbd.end();
   Kbd.begin();
-  if(DEBUG) {
+  if(DEBUGMODE) {
     Serial.println("BLE KBD setup complete...");
   }
 }
