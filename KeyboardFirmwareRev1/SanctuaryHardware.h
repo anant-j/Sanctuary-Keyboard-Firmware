@@ -42,4 +42,4 @@ Cannot use: 13 (LED)
 #define PIN_NEOPIXEL 0            // NeoPixel data pin
 #define NEOPIXEL_I2C_POWER 2      // NeoPixel power pin
 #define NUM_PIXELS 1              // Number of NeoPixels
-#define NEOPIXEL_BRIGHTNESS 10    // NeoPixel brightness (0-255)
+#define NEOPIXEL_BRIGHTNESS 1    // NeoPixel brightness (0-255)

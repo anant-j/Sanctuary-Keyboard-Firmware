@@ -116,26 +116,26 @@ void loop() {
 // Method to initialize row output pins
 void initializeRowPins() {
   for(int i = 0; i < NumRows; i++) {
-    pinMode(Rows[i], OUTPUT);  
-    digitalWrite(Rows[i], LOW);
     if(DEBUG) {
-      Serial.print("row output pin: ");
+      Serial.print("setup row output pin: ");
       Serial.println(Rows[i]);
     }
+    pinMode(Rows[i], OUTPUT);  
+    digitalWrite(Rows[i], LOW);    
   }
   if(DEBUG) {
-    Serial.println("row output pin complete...");
+    Serial.println("setup row output pin complete...");
   }
 }
 
 // Method to initialize column input pins
 void initializeColPins() {
   for(int i = 0; i < NumCols; i++) {
-    pinMode(Cols[i], INPUT_PULLDOWN);
     if(DEBUG) {
       Serial.print("column output pin: ");
       Serial.println(Cols[i]);
     }
+    pinMode(Cols[i], INPUT_PULLDOWN);
   }
   if(DEBUG) {
     Serial.println("Col output pin complete...");
