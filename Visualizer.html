@@ -81,7 +81,7 @@
 
     // Render Layers
     function renderLayers() {
-        const oldLayerSelectValue = layerSelect.value; 
+        var oldLayerSelectValue = layerSelect?.value;
         layerSelect.innerHTML = "";
         layerContainer.innerHTML = "";
         config.forEach((layer, layerIndex) => {
@@ -89,7 +89,11 @@
             option.value = layerIndex;
             option.textContent = `Layer ${layerIndex + 1}`;
             layerSelect.appendChild(option);
+            if(oldLayerSelectValue == null || oldLayerSelectValue == undefined || oldLayerSelectValue == "") {
+                oldLayerSelectValue = layerSelect.firstChild.value; 
+            }
             layerSelect.value = oldLayerSelectValue;
+            
             // Always render all layers, but only show the selected layer content
             const layerDiv = document.createElement("div");
             layerDiv.style.display = layerIndex === parseInt(oldLayerSelectValue) ? 'block' : 'none';
@@ -146,6 +150,7 @@
       const selectedLayer = parseInt(layerSelect.value);
       if (config.length > 1) {
         config.splice(selectedLayer, 1);
+        layerSelect.value = layerSelect.lastChild.value - 1;
         renderLayers();
       } else {
         alert("Cannot remove the last layer.");
