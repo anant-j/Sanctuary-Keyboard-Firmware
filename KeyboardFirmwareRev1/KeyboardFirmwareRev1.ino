@@ -9,7 +9,7 @@ Adafruit_NeoPixel pixels(NUM_PIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 // Function to set NeoPixel color
 void setNeoPixelColor(int red, int green, int blue)
 {
-  pixels.setPixelColor(0, pixels.Color(red, green, blue));
+  pixels.setPixelColor(PIN_NEOPIXEL, pixels.Color(red, green, blue));
   pixels.show();
 }
 

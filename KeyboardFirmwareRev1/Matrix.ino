@@ -21,5 +21,13 @@ int AllLayers[NumLayers][NumRows][NumCols] =
         },
 };
 
+
+// define a map to store different colors/rgb for different layers
+int BluetoothDisconnectColor[3] = {255, 0, 0}; // Red
+int LayerColors[NumLayers][3] = {
+    {0, 255, 0}, // Green
+    {0, 0, 255}, // Blue
+};
+
 // Array to check if a key is currently pressed - Initiate everything to 0
 short PressedCheck[NumLayers][NumRows][NumCols] = {OFF};
