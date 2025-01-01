@@ -36,7 +36,7 @@ Cannot use: 13 (LED)
 #define NumCols 12
 #define NumLayers 2
 
-#define FUNCTION_SW   256
+#define FUNC_LAYER   256
 
 // NeoPixel settings
 #define PIN_NEOPIXEL 0            // NeoPixel data pin

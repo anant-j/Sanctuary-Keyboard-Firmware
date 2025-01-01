@@ -57,7 +57,7 @@ void loop() {
         //Switch based on the key pressed, allows for unique functions other than alphanumerics
         switch(AllLayers[LayerCnt][RowCnt][ColCnt])
         {
-          case FUNCTION_SW:
+          case FUNC_LAYER:
             //PressedCheck.fill(OFF);
             Kbd.releaseAll();
             if (LayerCnt < NumLayers - 1){
@@ -80,7 +80,7 @@ void loop() {
         //Switch based on the switch released
         switch(AllLayers[LayerCnt][RowCnt][ColCnt])
         {
-          case FUNCTION_SW:
+          case FUNC_LAYER:
             PressedCheck[LayerCnt][RowCnt][ColCnt] = OFF;
             Kbd.release(KEY_MEDIA_PLAY_PAUSE);            
             Kbd.release(KEY_MEDIA_PREVIOUS_TRACK);
