@@ -36,6 +36,7 @@ Cannot use: 13 (LED)
 #define NumCols 12
 #define NumLayers 2
 
+// ANY CUSTOM VALUES MUST BE > 255
 #define FUNC_LAYER   256
 
 // NeoPixel settings
