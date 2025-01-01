@@ -81,6 +81,7 @@
 
     // Render Layers
     function renderLayers() {
+        const oldLayerSelectValue = layerSelect.value; 
         layerSelect.innerHTML = "";
         layerContainer.innerHTML = "";
         config.forEach((layer, layerIndex) => {
@@ -88,11 +89,11 @@
             option.value = layerIndex;
             option.textContent = `Layer ${layerIndex + 1}`;
             layerSelect.appendChild(option);
-
+            layerSelect.value = oldLayerSelectValue;
             // Always render all layers, but only show the selected layer content
             const layerDiv = document.createElement("div");
-            layerDiv.style.display = layerIndex === parseInt(layerSelect.value) ? 'block' : 'none';
-            renderLayer(layerDiv, layer, layerIndex);
+            layerDiv.style.display = layerIndex === parseInt(oldLayerSelectValue) ? 'block' : 'none';
+            renderLayer(layerDiv, layer, oldLayerSelectValue);
             layerContainer.appendChild(layerDiv);
         });
     }
