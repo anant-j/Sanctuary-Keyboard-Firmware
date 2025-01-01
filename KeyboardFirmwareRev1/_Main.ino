@@ -21,7 +21,7 @@ void setup()
   startBluetoothKeyboard();
 
   // Set NeoPixel to red (searching for BT device)
-  setNeoPixelColor(BluetoothDisconnectColor[0], BluetoothDisconnectColor[1], BluetoothDisconnectColor[2]);
+  setNeoPixelColor(BluetoothDisconnectColor[0], BluetoothDisconnectColor[1], BluetoothDisconnectColor[2], BluetoothDisconnectColor[3]);
 }
 
 int RowCnt = 0;
@@ -33,7 +33,7 @@ void loop()
   if (Kbd.isConnected())
   {
     // Set NeoPixel to the color corresponding to the current layer
-    setNeoPixelColor(LayerColors[LayerCnt][0], LayerColors[LayerCnt][1], LayerColors[LayerCnt][2]);
+    setNeoPixelColor(LayerColors[LayerCnt][0], LayerColors[LayerCnt][1], LayerColors[LayerCnt][2], LayerColors[LayerCnt][3]);
 
     // Initialize new Row to scan
     digitalWrite(Rows[RowCnt], HIGH);
@@ -108,7 +108,7 @@ void loop()
   }
   else // If the keyboard is not connected, set the NeoPixel to red
   {
-    setNeoPixelColor(BluetoothDisconnectColor[0], BluetoothDisconnectColor[1], BluetoothDisconnectColor[2]);
+    setNeoPixelColor(BluetoothDisconnectColor[0], BluetoothDisconnectColor[1], BluetoothDisconnectColor[2], BluetoothDisconnectColor[3]);
   }
   // Delay so it's not too fast
   delay(1);
