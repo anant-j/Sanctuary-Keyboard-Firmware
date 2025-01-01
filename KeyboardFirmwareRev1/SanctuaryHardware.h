@@ -37,9 +37,6 @@ Cannot use: 13 (LED)
 #define NumLayers 2
 
 #define FUNCTION_SW   256
-#define NULL_CON      257
-#define NEXT          258
-#define PREV          259
 
 // NeoPixel settings
 #define PIN_NEOPIXEL 0            // NeoPixel data pin
