@@ -1,11 +1,11 @@
 // DEBUGMODE Settings
 #define DEBUGMODE 1
 
-//Define on and off values
+// Define on and off values
 #define OFF 0
 #define ON 1
 
-//Pin Definitions
+// Pin Definitions
 #define Row1 12
 #define Row2 27
 #define Row3 33
@@ -31,16 +31,16 @@ Can use for Col only: 34, 39, 36, D37
 Cannot use: 13 (LED)
 */
 
-//Matrix setup
+// Matrix setup
 #define NumRows 5
 #define NumCols 12
 #define NumLayers 2
 
 // ANY CUSTOM VALUES MUST BE > 255
-#define FUNC_LAYER   256
+#define FUNC_LAYER 256
 
 // NeoPixel settings
-#define PIN_NEOPIXEL 0            // NeoPixel data pin
-#define NEOPIXEL_I2C_POWER 2      // NeoPixel power pin
-#define NUM_PIXELS 1              // Number of NeoPixels
-#define NEOPIXEL_BRIGHTNESS 1    // NeoPixel brightness (0-255)
+#define PIN_NEOPIXEL 0        // NeoPixel data pin
+#define NEOPIXEL_I2C_POWER 2  // NeoPixel power pin
+#define NUM_PIXELS 1          // Number of NeoPixels
+#define NEOPIXEL_BRIGHTNESS 1 // NeoPixel brightness (0-255)
