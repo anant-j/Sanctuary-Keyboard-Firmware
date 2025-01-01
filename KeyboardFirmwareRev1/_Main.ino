@@ -26,12 +26,21 @@ void setup()
 
 int RowCnt = 0;
 int LayerCnt = 0;
+int BluetoothAlreadyConnected = 0;
 // Method to handle the loop functionality
 void loop()
 {
   // Check if the keyboard is connected, if so, scan the matrix
   if (Kbd.isConnected())
   {
+    if (BluetoothAlreadyConnected == 0)
+    {
+      BluetoothAlreadyConnected = 1;
+      if (DEBUGMODE)
+      {
+        Serial.println("Bluetooth Connected...");
+      }
+    }
     // Set NeoPixel to the color corresponding to the current layer
     setNeoPixelColor(LayerColors[LayerCnt][0], LayerColors[LayerCnt][1], LayerColors[LayerCnt][2], LayerColors[LayerCnt][3]);
 
@@ -109,6 +118,14 @@ void loop()
   else // If the keyboard is not connected, set the NeoPixel to red
   {
     setNeoPixelColor(BluetoothDisconnectColor[0], BluetoothDisconnectColor[1], BluetoothDisconnectColor[2], BluetoothDisconnectColor[3]);
+    if (BluetoothAlreadyConnected == 1)
+    {
+      BluetoothAlreadyConnected = 0;
+      if (DEBUGMODE)
+      {
+        Serial.println("Bluetooth Disconnected...");
+      }
+    }
   }
   // Delay so it's not too fast
   delay(1);
