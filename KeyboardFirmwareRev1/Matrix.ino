@@ -21,7 +21,6 @@ int AllLayers[NumLayers][NumRows][NumCols] =
         },
 };
 
-
 // define a map to store different colors/rgb for different layers
 int BluetoothDisconnectColor[3] = {255, 0, 0}; // Red
 int LayerColors[NumLayers][3] = {
