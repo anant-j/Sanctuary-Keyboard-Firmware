@@ -14,13 +14,6 @@ void setNeoPixelColor(int red, int green, int blue, int brightness)
   pixels.show();
 }
 
-// Method to enable NeoPixel power
-void enableNeoPixelPower()
-{
-  pinMode(NEOPIXEL_I2C_POWER, OUTPUT);
-  digitalWrite(NEOPIXEL_I2C_POWER, HIGH); // Pull power pin high to enable NeoPixel
-}
-
 // Method to initialize NeoPixel
 void initializeNeoPixel()
 {
