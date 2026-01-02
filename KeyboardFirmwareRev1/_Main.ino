@@ -7,9 +7,6 @@ void setup()
     Serial.println("Start Initializing...");
   }
 
-  // Enable NeoPixel power
-  enableNeoPixelPower();
-
   // Initialize NeoPixel
   initializeNeoPixel();
 
@@ -45,7 +42,7 @@ void loop()
     setNeoPixelColor(LayerColors[LayerCnt][0], LayerColors[LayerCnt][1], LayerColors[LayerCnt][2], LayerColors[LayerCnt][3]);
 
     // Initialize new Row to scan
-    digitalWrite(Rows[RowCnt], HIGH);
+    digitalWrite(Rows[RowCnt], LOW);
 
     // Check columns
     int ColCnt = 0;
@@ -54,7 +51,7 @@ void loop()
     while (ColCnt <= (NumCols - 1))
     {
       // Check state of current position, and make sure it was previously off
-      if (digitalRead(Cols[ColCnt]) == HIGH && PressedCheck[LayerCnt][RowCnt][ColCnt] == OFF)
+      if (digitalRead(Cols[ColCnt]) == LOW && PressedCheck[LayerCnt][RowCnt][ColCnt] == OFF)
       {
         if (DEBUGMODE)
         {
@@ -83,7 +80,7 @@ void loop()
       }
 
       // Otherwise, check if the switch was released
-      else if (digitalRead(Cols[ColCnt]) == LOW && PressedCheck[LayerCnt][RowCnt][ColCnt] == ON)
+      else if (digitalRead(Cols[ColCnt]) == HIGH && PressedCheck[LayerCnt][RowCnt][ColCnt] == ON)
       {
         // Switch based on the switch released
         switch (AllLayers[LayerCnt][RowCnt][ColCnt])
@@ -106,7 +103,7 @@ void loop()
       ColCnt++;
     }
     // Reset back to original row to scan
-    digitalWrite(Rows[RowCnt], LOW);
+    digitalWrite(Rows[RowCnt], HIGH);
     // Increase row outputted
     RowCnt++;
     // Loop back to original row if out of the number of rows
@@ -142,7 +139,7 @@ void initializeRowPins()
       Serial.println(Rows[i]);
     }
     pinMode(Rows[i], OUTPUT);
-    digitalWrite(Rows[i], LOW);
+    digitalWrite(Rows[i], HIGH);
   }
   if (DEBUGMODE)
   {
@@ -160,7 +157,7 @@ void initializeColPins()
       Serial.print("column output pin: ");
       Serial.println(Cols[i]);
     }
-    pinMode(Cols[i], INPUT_PULLDOWN);
+    pinMode(Cols[i], INPUT_PULLUP);
   }
   if (DEBUGMODE)
   {
