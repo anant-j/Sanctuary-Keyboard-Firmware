@@ -1,3 +1,4 @@
+#include <NimBLEDevice.h>
 #include <BleKeyboard.h> //Primary heavyweight for sending keystrokes
 #include <Adafruit_NeoPixel.h>
 #include "SanctuaryHardware.h" //Definitions file, for all the hardware - removes and simplifies from this file
