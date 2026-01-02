@@ -6,30 +6,24 @@
 #define ON 1
 
 // Pin Definitions
-#define Row1 12
-#define Row2 27
-#define Row3 33
-#define Row4 15
-#define Row5 32
+#define Row1 4
+#define Row2 5
+#define Row3 6
+#define Row4 7
+#define Row5 8
 
-#define Col1 14
-#define Col2 20
-#define Col3 22
-#define Col4 26
-#define Col5 25
-#define Col6 4
-#define Col7 5
-#define Col8 19
-#define Col9 21
-#define Col10 34
-#define Col11 39
-#define Col12 36
-
-/*  https://learn.adafruit.com/adafruit-esp32-feather-v2/pinouts
-Can use for both: 26, 25, 4, 5, 19, 21, 7, 8, 12, 27, 33, 15, 32, 14, 20, 22
-Can use for Col only: 34, 39, 36, D37
-Cannot use: 13 (LED)
-*/
+#define Col1 9
+#define Col2 10
+#define Col3 11
+#define Col4 21
+#define Col5 38
+#define Col6 39
+#define Col7 42
+#define Col8 41
+#define Col9 40
+#define Col10 37
+#define Col11 36
+#define Col12 35
 
 // Matrix setup
 #define NumRows 5
@@ -40,7 +34,6 @@ Cannot use: 13 (LED)
 #define FUNC_LAYER 256
 
 // NeoPixel settings
-#define PIN_NEOPIXEL 0             // NeoPixel data pin
-#define NEOPIXEL_I2C_POWER 2       // NeoPixel power pin
+#define PIN_NEOPIXEL 48             // NeoPixel data pin
 #define NUM_PIXELS 1               // Number of NeoPixels
 #define NEOPIXEL_BASE_BRIGHTNESS 1 // NeoPixel brightness (0-255)
