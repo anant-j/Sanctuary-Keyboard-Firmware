@@ -12,18 +12,18 @@
 #define Row4 7
 #define Row5 8
 
-#define Col1 9
-#define Col2 10
-#define Col3 11
-#define Col4 21
-#define Col5 38
-#define Col6 39
+#define Col1 3
+#define Col2 46
+#define Col3 9
+#define Col4 10
+#define Col5 1
+#define Col6 2
 #define Col7 42
 #define Col8 41
 #define Col9 40
-#define Col10 37
-#define Col11 36
-#define Col12 35
+#define Col10 39
+#define Col11 38
+#define Col12 37
 
 // Matrix setup
 #define NumRows 5
